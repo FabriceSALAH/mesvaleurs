@@ -7,6 +7,7 @@
           Identifier mes valeurs
         </q-toolbar-title>
       </q-toolbar>
+      <q-linear-progress :value="progress" color="warning" />
     </q-header>
 
 
@@ -20,14 +21,10 @@
 
 export default {
   name: 'MainLayout',
-
-  components: {
-  },
-
-  data () {
-    return {
-
+  computed: {
+    progress() {
+      return this.$store.state.progress;
     }
-  }
+  },
 }
 </script>

@@ -14,14 +14,19 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-import { actions } from '../helpers/constantes';
+import { actions, inputsData } from '../helpers/constantes';
 
 
 export default function (/* { ssrContext } */) {
+  const results = inputsData.map((element) => ({
+    name: element,
+    points: 0
+  }));
   const Store = new Vuex.Store({
     state: {
-      step: 2,
-      results: [],
+      step: 1,
+      results,
+      progress: 0.0
     },
     mutations: {
       [actions.SET_STEPS] (state, index) {
@@ -29,6 +34,12 @@ export default function (/* { ssrContext } */) {
       },
       [actions.SET_RESULTS] (state, results) {
         state.results = results;
+      },
+      [actions.SET_PROGRESS] (state, progress) {
+        state.progress = progress;
+      },
+      [actions.ADD_POINT] (state, index) {
+        state.results[index].points = state.results[index].points + 1;
       }
     },
     modules: {

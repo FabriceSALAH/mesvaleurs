@@ -1,4 +1,4 @@
-export const inputsData2 = [
+export const inputsData = [
   'Etre riche',
   'Aider les autres',
   'Faire une contribution',
@@ -54,14 +54,18 @@ export const inputsData2 = [
   'Comprendre les choses',
   'S\'efforcer d\'être une meilleure personne',
 ];
-export const inputsData = [
+export const inputsData2 = [
   'Etre riche',
-  'Aider les autres',
   'Faire une contribution',
-  'Avoir une vie tranquille',
+  'Comprendre les choses',
+  'S\'efforcer d\'être une meilleure personne',
+  'Profiter de la nourriture et des boissons',
+  'Se sentir bien dans ma peau',
 ];
 
 export const actions = {
   SET_STEPS: 'setStep',
-  SET_RESULTS: 'setResults'
+  SET_RESULTS: 'setResults',
+  SET_PROGRESS: 'setProgress',
+  ADD_POINT: 'addPoint'
 };
