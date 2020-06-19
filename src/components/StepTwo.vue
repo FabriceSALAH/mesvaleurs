@@ -2,7 +2,7 @@
   <div>
 
     <div id="container">
-      <div id="next" @click="handleClick(-1)">Next</div>
+      <div id="next" @click="handleClick(-1)">VS</div>
       <div id="left" @click="handleClick(index)">{{inputsData[index]}}</div>
       <div id="right" @click="handleClick(index+1)">{{inputsData[index+1]}}</div>
     </div>
@@ -25,11 +25,26 @@ export default {
       nbCycle: 0,
       nbGame: 0,
       nbClick: 0,
+      memInterval: null,
+      countSeconds: 0
     }
   },
   methods: {
+    recall: function () {
+      this.memInterval = setInterval(() => {
+        //
+        this.countSeconds++;
+        if (this.countSeconds > 5) {
+          this.countSeconds = 1;
+          this.handleClick(-1);
+        }
+        console.log('this.countSeconds: ', this.countSeconds);
+      } , 1000);
+    },
     handleClick: function(index) {
       this.nbClick++;
+      // if (this.memInterval !== null ) clearInterval(this.memInterval);
+      this.countSeconds = 0;
 
       this.valuesAndPoints.forEach((element) => {
         if (index === -1) {
@@ -64,11 +79,11 @@ export default {
   },
   created: function () {
     this.inputsData = shuffle(inputsData);
-    console.log('this.inputsData: ', this.inputsData);
     this.valuesAndPoints = this.inputsData.map((element) => ({
       name: element,
       points: 0
     }))
+    this.recall();
   }
 }
 </script>
@@ -91,7 +106,7 @@ export default {
     z-index: 1;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
     background-color: orange;
     border-radius: 50%;
     font-size: x-large;

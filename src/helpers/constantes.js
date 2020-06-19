@@ -1,11 +1,4 @@
-/* export const inputsData = [
-  'Etre riche',
-  'Aider les autres',
-  'Faire une contribution',
-  'Avoir une vie tranquille',
-]; */
-
-export const inputsData = [
+export const inputsData2 = [
   'Etre riche',
   'Aider les autres',
   'Faire une contribution',
@@ -60,6 +53,12 @@ export const inputsData = [
   'Se sentir bien dans ma peau',
   'Comprendre les choses',
   'S\'efforcer d\'être une meilleure personne',
+];
+export const inputsData = [
+  'Etre riche',
+  'Aider les autres',
+  'Faire une contribution',
+  'Avoir une vie tranquille',
 ];
 
 export const actions = {
