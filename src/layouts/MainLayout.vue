@@ -4,9 +4,8 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title>
-          Quasar App title
+          Identifier mes valeurs
         </q-toolbar-title>
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
