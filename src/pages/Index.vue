@@ -16,24 +16,55 @@ export default {
   data: function () {
     return {
       index: 0,
-      values: []
+      values: [],
+      valuesAndPoints: [],
+      nbCycle: 0,
+      nbGame: 0
     }
   },
   methods: {
     handleClick: function(index) {
-      console.log('index: ', index);
-      console.log('coucou');
-        console.log('this.values.length: ', this.values.length);
-      if (this.index === this.values.length-1) {
+
+
+
+      if (this.nbGame < 3 * this.values.length / 2) {
+        this.nbGame = this.nbGame + 1;
+      } else {
+        this.index = this.index + 2;
         console.log('cest la fin');
+        this.valuesAndPoints.forEach((element) => {
+          console.log(element.value,'_',element.point);
+        })
+        return;
       }
-      this.index = this.index + 2;
+
+      this.valuesAndPoints.forEach((element) => {
+        if (element.value === this.values[index]) {
+          element.point = element.point + 1;
+        }
+      })
+
+      if (this.index !== this.values.length - 2) {
+        this.index = this.index + 2;
+      } else {
+        this.index = 0;
+      }
+
+      if (this.nbCycle === 2) {
+        this.nbCycle = 0;
+        this.values = shuffle(this.values);
+      }
+      this.nbCycle++;
     }
   },
   created: function () {
     const values = ['liberté', 'sécurité', 'autonomie', 'succès', 'responsabilité', 'curieux'];
     const shuffleValues = shuffle(values);
     this.values = shuffleValues;
+    this.valuesAndPoints = shuffleValues.map((element) => ({
+      value: element,
+      point: 0
+    }))
   }
 }
 </script>
