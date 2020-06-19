@@ -14,8 +14,23 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
+import { actions } from '../helpers/constantes';
+
+
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
+    state: {
+      step: 2,
+      results: [],
+    },
+    mutations: {
+      [actions.SET_STEPS] (state, index) {
+        state.step = index;
+      },
+      [actions.SET_RESULTS] (state, results) {
+        state.results = results;
+      }
+    },
     modules: {
       // example
     },
