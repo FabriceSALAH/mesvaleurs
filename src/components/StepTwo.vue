@@ -13,12 +13,14 @@
           track-color="transparent"
           class="q-ma-md"
         >
-        <div id="chooseValueToContinue" v-if="nbClick === 0">Choisir une valeur pour continuer</div>
+        <div id="chooseValueToContinue" v-if="nbClick === -1">Choisir une valeur pour continuer</div>
         <div v-else>VS</div>
         </q-circular-progress>
       </div>
-      <div id="left" @click="handleClick(index)">{{inputsData[index]}}</div>
-      <div id="right" @click="handleClick(index+1)">{{inputsData[index+1]}}</div>
+      <div v-if="nbClick === -1" id="left" @click="handleClick(index)">J'aime le sucré.</div>
+      <div v-if="nbClick === -1"  id="right" @click="handleClick(index+1)">J'aime le salé.</div>
+      <div v-if="nbClick >= 0" id="left" @click="handleClick(index)">{{inputsData[index]}}</div>
+      <div v-if="nbClick >= 0"  id="right" @click="handleClick(index+1)">{{inputsData[index+1]}}</div>
     </div>
   </div>
 </template>
@@ -33,14 +35,15 @@ export default {
   name: 'StepTwo',
   data: function () {
     return {
-      index: 0,
+      index: -2,
       inputsData: [],
       valuesAndPoints: [],
       nbGame: 0,
-      nbClick: 0,
+      nbClick: -1,
       memInterval: null,
       countSeconds: 0,
       timeOutInSecond: 5,
+      remainsSeconds: 0
     }
   },
   computed:{
@@ -60,6 +63,7 @@ export default {
     },
     handleClick: function(index) {
       this.nbClick++;
+      this.remainsSeconds = 6 - this.countSeconds;
       this.countSeconds = 0;
       const gameCycleNb = 1;
       const totalGamesNb = gameCycleNb * (this.inputsData.length / 2);
@@ -72,10 +76,14 @@ export default {
           // if (element.name === this.inputsData[this.index + 1]) element.points = element.points + 1;
         } else if (element.name === this.inputsData[index]) {
           // element.points = element.points + 1;
-          this.$store.commit(actions.ADD_POINT, indexElement);
+          const dataToAddPoints = {
+            index: indexElement,
+            points: this.remainsSeconds
+          }
+          this.$store.commit(actions.ADD_POINTS, dataToAddPoints);
         }
       })
-      if (this.nbGame < totalGamesNb - 1) {
+      if (this.nbGame < totalGamesNb) {
         this.nbGame = this.nbGame + 1;
       } else {
         if (this.memInterval !== null ) clearInterval(this.memInterval);
@@ -89,7 +97,7 @@ export default {
       if (this.index !== this.inputsData.length - 2) {
         this.index = this.index + 2;
       } else {
-        this.index = 0;
+        this.index = -2;
       }
 
       if (this.memInterval === null ) this.recall();

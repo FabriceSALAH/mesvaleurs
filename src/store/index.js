@@ -38,8 +38,9 @@ export default function (/* { ssrContext } */) {
       [actions.SET_PROGRESS] (state, progress) {
         state.progress = progress;
       },
-      [actions.ADD_POINT] (state, index) {
-        state.results[index].points = state.results[index].points + 1;
+      [actions.ADD_POINTS] (state, dataToAddPoints) {
+        const { index, points } = dataToAddPoints;
+        state.results[index].points = state.results[index].points + points;
       }
     },
     modules: {

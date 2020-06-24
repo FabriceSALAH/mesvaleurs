@@ -55,17 +55,17 @@ export const inputsData = [
   'S\'efforcer d\'être une meilleure personne',
 ];
 export const inputsData2 = [
-  'Etre riche',
-  'Faire une contribution',
-  'Comprendre les choses',
-  'S\'efforcer d\'être une meilleure personne',
+  'Garder ses proches en sécurité',
+  'Etre auto-suffisant',
   'Profiter de la nourriture et des boissons',
   'Se sentir bien dans ma peau',
+  'Comprendre les choses',
+  'S\'efforcer d\'être une meilleure personne'
 ];
 
 export const actions = {
   SET_STEPS: 'setStep',
   SET_RESULTS: 'setResults',
   SET_PROGRESS: 'setProgress',
-  ADD_POINT: 'addPoint'
+  ADD_POINTS: 'addPoints'
 };
