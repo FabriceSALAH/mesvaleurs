@@ -1,6 +1,6 @@
 {
   "name": "mesvaleurs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Identifier mes valeurs",
   "productName": "Identifier mes valeurs",
   "author": "FabriceSALAH <fabrice.salah@gmail.com>",
@@ -42,7 +42,7 @@
     "last 5 Opera versions"
   ],
   "engines": {
-    "node": ">= 10.18.1",
+    "node": "18.18.2",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
